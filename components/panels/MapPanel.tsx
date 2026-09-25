@@ -98,7 +98,7 @@ export default function MapPanel() {
         ].map(([k, v, pct]) => (
           <div key={k as string} className="space-y-1">
             <div className="text-[10px] tracking-wider text-primary/50 uppercase">{k}</div>
-            <div className="text-xl font-light text-primary">{v}</div>
+            <div className="text-xl font-semibold text-primary">{v}</div>
             <div className="h-1 w-full overflow-hidden rounded-full bg-primary/5">
               <div className="h-full bg-primary/40" style={{ width: `${pct}%` }} />
             </div>

@@ -20,7 +20,7 @@ export default function Steps() {
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <span className="label">{t.how.label}</span>
-          <h2 className="mt-4 max-w-[16ch] text-[30px] leading-tight font-light text-primary md:text-[40px]">
+          <h2 className="mt-4 max-w-[16ch] text-[30px] leading-tight font-bold text-primary md:text-[40px]">
             {t.how.title}
           </h2>
         </Reveal>
@@ -40,7 +40,7 @@ export default function Steps() {
                 <h3 className="text-[20px] leading-snug font-normal text-primary sm:col-span-4">
                   {s.title}
                 </h3>
-                <p className="max-w-[58ch] text-[16px] leading-relaxed font-light text-secondary sm:col-span-7">
+                <p className="max-w-[58ch] text-[16px] leading-relaxed text-secondary sm:col-span-7">
                   {s.text}
                 </p>
               </li>

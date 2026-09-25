@@ -29,7 +29,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease }}
-            className="mb-6 text-4xl leading-tight font-light tracking-tight text-balance text-on-primary md:text-6xl"
+            className="mb-6 text-4xl leading-tight font-bold tracking-tight text-balance text-on-primary md:text-6xl"
           >
             {t.hero.headline}
           </motion.h1>
@@ -40,7 +40,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.16, ease }}
-            className="mx-auto mb-9 max-w-[52ch] text-[16px] leading-relaxed font-light text-pretty text-inverse-on-surface/85 md:text-[18px]"
+            className="mx-auto mb-9 max-w-[52ch] text-[16px] leading-relaxed text-pretty text-inverse-on-surface/85 md:text-[18px]"
           >
             {t.hero.what}
           </motion.p>

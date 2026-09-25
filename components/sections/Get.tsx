@@ -18,13 +18,13 @@ export default function Get() {
         >
           <div className="mx-auto flex max-w-2xl flex-col items-center px-8 text-center">
             <span className="label mb-5 text-inverse-on-surface/70">{t.get.label}</span>
-            <h2 className="text-4xl leading-tight font-light text-balance text-on-primary md:text-5xl">
+            <h2 className="text-4xl leading-tight font-bold text-balance text-on-primary md:text-5xl">
               {ready ? t.get.title : t.get.unavailable}
             </h2>
 
             {ready && (
               <>
-                <p className="mt-5 max-w-[40ch] text-[15px] leading-relaxed font-light text-inverse-on-surface/85">
+                <p className="mt-5 max-w-[40ch] text-[15px] leading-relaxed text-inverse-on-surface/85">
                   {t.get.text}
                 </p>
                 <a

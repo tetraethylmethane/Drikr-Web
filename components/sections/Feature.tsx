@@ -50,10 +50,10 @@ export default function Feature({
         >
           <Reveal className="w-full lg:w-2/5">
             <span className="label">{label}</span>
-            <h2 className="mt-4 max-w-[18ch] text-[28px] leading-tight font-light text-primary md:text-[36px]">
+            <h2 className="mt-4 max-w-[18ch] text-[28px] leading-tight font-bold text-primary md:text-[36px]">
               {title}
             </h2>
-            <p className="mt-6 max-w-[52ch] text-[16px] leading-relaxed font-light text-secondary">
+            <p className="mt-6 max-w-[52ch] text-[16px] leading-relaxed text-secondary">
               {rich(text)}
             </p>
 
@@ -112,7 +112,7 @@ function PointList({ points }: { points: Point[] }) {
             <span
               aria-hidden
               className={cn(
-                'absolute top-0 left-0 h-[2px] bg-primary transition-all duration-500',
+                'absolute top-0 start-0 h-[2px] bg-primary transition-all duration-500',
                 isOpen ? 'w-full' : 'w-0',
               )}
             />
@@ -122,7 +122,7 @@ function PointList({ points }: { points: Point[] }) {
                 onClick={() => setOpen(isOpen ? -1 : i)}
                 onFocus={() => setOpen(i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-baseline justify-between gap-4 rounded py-5 text-left"
+                className="flex w-full items-baseline justify-between gap-4 rounded py-5 text-start"
               >
                 <span
                   className={cn(
@@ -149,7 +149,7 @@ function PointList({ points }: { points: Point[] }) {
                 isOpen ? 'grid-rows-[1fr] pb-5' : 'grid-rows-[0fr]',
               )}
             >
-              <p className="overflow-hidden pr-6 text-[15px] leading-relaxed font-light text-secondary">
+              <p className="overflow-hidden pe-6 text-[15px] leading-relaxed text-secondary">
                 {rich(p.body)}
               </p>
             </dd>

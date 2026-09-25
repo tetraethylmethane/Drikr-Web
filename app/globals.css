@@ -40,9 +40,22 @@
   --color-inverse-primary: #c6c6c6;
 
   /* --- type -------------------------------------------------------------- */
-  --font-headline: var(--font-roboto-slab), 'Roboto Slab', Georgia, serif;
-  --font-body: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+  /* Montserrat and Karla carry Latin and, via next/font's subsets, little
+     else — the Indic and Arabic scripts fall through to whatever the device
+     has. Naming those fallbacks explicitly stops Urdu landing in a serif on
+     one phone and a Nastaliq on another, and keeps the Indic scripts on the
+     Noto faces most Android builds ship. */
+  --font-indic: 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil',
+    'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam',
+    'Noto Sans Gujarati', 'Noto Sans Gurmukhi', 'Noto Sans Oriya', 'Nirmala UI';
+  --font-arabic: 'Noto Naskh Arabic', 'Segoe UI', 'Urdu Typesetting';
+
+  --font-headline: var(--font-montserrat), 'Montserrat', var(--font-indic),
+    var(--font-arabic), Georgia, serif;
+  --font-body: var(--font-karla), var(--font-indic), var(--font-arabic),
+    ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-karla), var(--font-indic), var(--font-arabic),
+    ui-sans-serif, system-ui, sans-serif;
 
   --text-headline-xl: 48px;
   --text-headline-xl--line-height: 1.2;
@@ -109,6 +122,15 @@ h1,
 h2,
 h3 {
   font-family: var(--font-headline);
+  font-weight: 700;
+  /* Montserrat is wide and its default spacing reads loose at display sizes.
+     The larger the type, the more it has to be pulled back — a value that
+     looks right at 30px is visibly slack at 60px. */
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  letter-spacing: -0.035em;
 }
 
 ::selection {
@@ -150,7 +172,7 @@ html.lenis body {
   padding-inline: 20px;
 }
 
-/* Uppercase metadata — Roboto, heavier, letterspaced, per the type notes. */
+/* Uppercase metadata — Karla, heavier, letterspaced, per the type notes. */
 @utility label {
   font-size: 12px;
   font-weight: 600;

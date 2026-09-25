@@ -1,28 +1,28 @@
 import type { Metadata, Viewport } from 'next';
-import { Roboto_Slab, Roboto } from 'next/font/google';
+import { Montserrat, Karla } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/lib/i18n';
 
-// DESIGN.md specifies Noto Serif + Manrope; Roboto Slab + Roboto is the
-// pairing chosen instead. Same roles — slab for headlines, sans for body —
-// and because both share one skeleton, the slab reads as emphasis rather than
-// as a second voice.
+// DESIGN.md specifies Noto Serif + Manrope; Montserrat + Karla is the pairing
+// chosen instead. Montserrat is set bold for headings — it is a wide geometric
+// face, so the display sizes carry negative tracking in globals.css or the
+// words drift apart. Karla is narrower and quieter underneath it.
 //
 // Both are variable fonts. Passing an explicit weight array makes next/font
 // look for static instances Google no longer serves, which fails the build
 // with a null deref inside the loader rather than a useful message.
-const serif = Roboto_Slab({
+const display = Montserrat({
   subsets: ['latin'],
-  variable: '--font-roboto-slab',
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
-const sans = Roboto({
+const body = Karla({
   subsets: ['latin'],
-  variable: '--font-roboto',
+  variable: '--font-karla',
   display: 'swap',
 });
 
@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <head>
         {/* Material Symbols, as the reference implementation uses for the
             capabilities grid. Loaded with the outlined, unfilled axis only. */}

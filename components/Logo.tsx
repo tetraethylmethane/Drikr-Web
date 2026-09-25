@@ -50,9 +50,10 @@ export function Mark({ className }: { className?: string }) {
  *
  * The wordmark is live text rather than cropped artwork — it stays crisp at any
  * size, scales with the user's font settings, and is selectable and readable by
- * a screen reader. Roboto at 600 with tight tracking is close to the grotesque
- * in the original; swap in the real artwork if the match matters more than
- * those properties.
+ * a screen reader. Montserrat is the closer match of the two faces here — the
+ * original wordmark is a geometric grotesque, which is what Montserrat is and
+ * Karla is not. Swap in the real artwork if exact letterforms matter more than
+ * staying crisp and selectable.
  */
 export default function Logo({
   variant = 'lockup',
@@ -75,9 +76,9 @@ export default function Logo({
   return (
     <span className={cn('inline-flex items-center gap-[0.55em]', className)}>
       <Mark className={cn('h-[1.05em] w-[1.05em] shrink-0', markClassName)} />
-      <span className="font-semibold tracking-[-0.01em] whitespace-nowrap uppercase">
+      <span className="font-headline font-bold tracking-[-0.01em] whitespace-nowrap uppercase">
         Drikr Systems
-        <sup className="ml-[0.15em] align-super text-[0.42em] font-medium tracking-normal">
+        <sup className="ms-[0.15em] align-super text-[0.42em] font-medium tracking-normal">
           &trade;
         </sup>
       </span>

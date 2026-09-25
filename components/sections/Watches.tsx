@@ -18,7 +18,7 @@ export default function Watches() {
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <span className="label">{t.watch.label}</span>
-          <h2 className="mt-4 max-w-[20ch] text-[30px] leading-tight font-light text-primary md:text-[40px]">
+          <h2 className="mt-4 max-w-[20ch] text-[30px] leading-tight font-bold text-primary md:text-[40px]">
             {t.watch.title}
           </h2>
         </Reveal>
@@ -38,7 +38,7 @@ export default function Watches() {
                   </span>
                   <span className="text-[20px] font-normal text-primary">{it.name}</span>
                 </dt>
-                <dd className="max-w-[60ch] text-[16px] leading-relaxed font-light text-secondary sm:col-span-8">
+                <dd className="max-w-[60ch] text-[16px] leading-relaxed text-secondary sm:col-span-8">
                   {it.text}
                 </dd>
               </div>

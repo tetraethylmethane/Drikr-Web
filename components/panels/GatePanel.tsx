@@ -34,7 +34,7 @@ export default function GatePanel() {
           <label htmlFor="gate" className="text-[10px] tracking-wider text-primary/50 uppercase">
             {t.demo.threshold}
           </label>
-          <span className="text-xl font-light text-primary">{Math.round(threshold * 100)}%</span>
+          <span className="text-xl font-semibold text-primary">{Math.round(threshold * 100)}%</span>
         </div>
         <input
           id="gate"

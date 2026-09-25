@@ -31,10 +31,10 @@ export default function Savings() {
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <span className="label">{t.save.label}</span>
-          <h2 className="mt-4 max-w-[20ch] text-[30px] leading-tight font-light text-primary md:text-[40px]">
+          <h2 className="mt-4 max-w-[20ch] text-[30px] leading-tight font-bold text-primary md:text-[40px]">
             {t.save.title}
           </h2>
-          <p className="mt-5 max-w-[52ch] text-[16px] leading-relaxed font-light text-secondary">
+          <p className="mt-5 max-w-[52ch] text-[16px] leading-relaxed text-secondary">
             {rich(t.save.text)}
           </p>
         </Reveal>
@@ -83,7 +83,7 @@ export default function Savings() {
               {t.save.yourField}
             </label>
             <div className="mt-3 flex items-baseline gap-3">
-              <span className="font-headline text-[52px] leading-none font-light text-primary">
+              <span className="font-headline text-[52px] leading-none font-bold text-primary">
                 {acres.toFixed(1)}
               </span>
               <span className="text-[16px] text-secondary">{t.save.acres}</span>
@@ -124,7 +124,7 @@ export default function Savings() {
               </div>
             </dl>
 
-            <p className="mt-7 border-l border-primary pl-5 text-[15px] leading-relaxed font-light text-secondary">
+            <p className="mt-7 border-s border-primary ps-5 text-[15px] leading-relaxed text-secondary">
               {rich(t.save.note)}
             </p>
           </Reveal>
