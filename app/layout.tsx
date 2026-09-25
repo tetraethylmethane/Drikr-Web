@@ -4,6 +4,7 @@ import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { LanguageProvider } from '@/lib/i18n';
 
 // DESIGN.md specifies Noto Serif + Manrope; Roboto Slab + Roboto is the
 // pairing chosen instead. Same roles — slab for headlines, sans for body —
@@ -56,13 +57,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <SmoothScroll>
-          <Nav />
-          <main id="main" className="w-full">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScroll>
+        <LanguageProvider>
+          <SmoothScroll>
+            <Nav />
+            <main id="main" className="w-full">
+              {children}
+            </main>
+            <Footer />
+          </SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { useT } from '@/lib/i18n';
 
 /**
  * The confidence gate, playable, inside the reference's floating panel.
@@ -12,14 +13,17 @@ import { cn } from '@/lib/utils';
  * asserted in a paragraph.
  */
 
+// Scores and confidences are fixed; the names come from the dictionary so they
+// match what the app puts on screen in each language.
 const RISKS = [
-  { domain: 'Pest', score: 68, confidence: 0.86, why: 'Four stations agree, readings minutes old' },
-  { domain: 'Irrigation', score: 74, confidence: 0.71, why: 'Under the stage floor, three stations' },
-  { domain: 'Nutrient', score: 59, confidence: 0.48, why: 'One working probe only' },
-  { domain: 'Climate risk', score: 81, confidence: 0.34, why: 'Last reading is nine hours old' },
+  { i: 0, score: 68, confidence: 0.86 },
+  { i: 1, score: 74, confidence: 0.71 },
+  { i: 2, score: 59, confidence: 0.48 },
+  { i: 3, score: 81, confidence: 0.34 },
 ];
 
 export default function GatePanel() {
+  const { t } = useT();
   const [threshold, setThreshold] = useState(0.6);
   const sent = RISKS.filter((r) => r.confidence >= threshold).length;
 
@@ -28,7 +32,7 @@ export default function GatePanel() {
       <div>
         <div className="flex items-baseline justify-between">
           <label htmlFor="gate" className="text-[10px] tracking-wider text-primary/50 uppercase">
-            Confidence threshold
+            {t.demo.threshold}
           </label>
           <span className="text-xl font-light text-primary">{Math.round(threshold * 100)}%</span>
         </div>
@@ -43,33 +47,33 @@ export default function GatePanel() {
           className="mt-4 h-1 w-full cursor-pointer appearance-none bg-primary/10 accent-primary"
         />
         <div className="mt-2 flex justify-between text-[10px] text-primary/50">
-          <span>Tell me everything</span>
-          <span>Only when certain</span>
+          <span>{t.demo.low}</span>
+          <span>{t.demo.high}</span>
         </div>
       </div>
 
       <dl className="divide-y divide-primary/10 border-y border-primary/10">
         {RISKS.map((r) => {
+          const name = t.watch.items[r.i].name;
           const passes = r.confidence >= threshold;
           return (
             <div
-              key={r.domain}
+              key={r.i}
               className={cn(
                 'flex items-center gap-4 py-3.5 transition-opacity duration-500',
                 !passes && 'opacity-35',
               )}
             >
               <dt className="w-28 shrink-0">
-                <span className="block text-sm font-medium text-primary">{r.domain}</span>
+                <span className="block text-sm font-medium text-primary">{name}</span>
                 <span className="block text-[10px] tracking-wider text-primary/50 uppercase">
-                  {passes ? 'Sent' : 'Held back'}
+                  {passes ? t.demo.sent : t.demo.held}
                 </span>
               </dt>
               <dd className="flex-1">
-                <p className="mb-2 text-[11px] leading-snug text-secondary">{r.why}</p>
                 <div className="grid grid-cols-2 gap-3">
-                  <Meter label="Bad" value={r.score / 100} />
-                  <Meter label="Sure" value={r.confidence} />
+                  <Meter label={t.demo.bad} value={r.score / 100} />
+                  <Meter label={t.demo.sure} value={r.confidence} />
                 </div>
               </dd>
             </div>
@@ -78,9 +82,9 @@ export default function GatePanel() {
       </dl>
 
       <p className="text-[11px] leading-relaxed text-secondary">
-        <span className="text-primary">{sent} of 4 sent.</span> Climate risk scores the highest
-        of the four at 81, and is the first to be dropped — the forecast says hail, but the last
-        reading from the field is nine hours old.
+        <span className="text-primary">
+          {sent} / {RISKS.length} {t.demo.sent}
+        </span>
       </p>
     </div>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useT } from '@/lib/i18n';
 
 /**
  * The health map, playable, inside the reference's floating panel.
@@ -37,6 +38,7 @@ function idw(x: number, y: number, ns: Station[]) {
 }
 
 export default function MapPanel() {
+  const { t } = useT();
   const [stations, setStations] = useState<Station[]>(INITIAL);
   const [dragging, setDragging] = useState<string | null>(null);
   const board = useRef<HTMLDivElement>(null);
@@ -90,9 +92,9 @@ export default function MapPanel() {
     <div className="flex flex-col gap-8 p-8">
       <div className="grid grid-cols-3 gap-4">
         {[
-          ['Area flagged', `${affected}%`, affected],
-          ['Stations', '4', 100],
-          ['Cells scored', String(CELLS * CELLS), 100],
+          [t.save.label, `${affected}%`, affected],
+          ['S1 – S4', '4', 100],
+          [`${CELLS} × ${CELLS}`, String(CELLS * CELLS), 100],
         ].map(([k, v, pct]) => (
           <div key={k as string} className="space-y-1">
             <div className="text-[10px] tracking-wider text-primary/50 uppercase">{k}</div>
@@ -155,12 +157,12 @@ export default function MapPanel() {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-primary/50">Drag a station — or tab and use arrows</span>
+        <span className="text-[10px] text-primary/50">{t.demo.drag}</span>
         <button
           onClick={() => setStations(INITIAL)}
           className="rounded text-[10px] tracking-wider text-primary/60 uppercase hover:text-primary"
         >
-          Reset
+          {t.demo.reset}
         </button>
       </div>
     </div>
