@@ -31,9 +31,9 @@ export const APK: {
   // README — but that needs `gh auth login` first.
   url: '/drikr.apk',
   version: '1.0.0',
-  sizeMb: 98,
+  sizeMb: 102,
   minAndroid: '7.0 (API 24)',
-  builtAt: '18 September 2026',
+  builtAt: '26 September 2026',
 };
 
 /**
