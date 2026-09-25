@@ -1,15 +1,22 @@
 'use client';
 
+import { useState } from 'react';
 import Reveal from '@/components/ui/Reveal';
 import DarkPlate from '@/components/DarkPlate';
+import { rich } from '@/lib/rich';
 import { cn } from '@/lib/utils';
 
+export type Point = { title: string; body: string };
+
 /**
- * Copy on one side, a working demo on the other.
+ * Copy and an expanding list on one side, a working demo on the other.
  *
- * The earlier version of this block carried a three-item reveal list under the
- * copy, which repeated what the five steps already say. It went: the demo is
- * the argument here, and a second explanation next to it only competes.
+ * The list is driven by state rather than `:hover`. Opening on hover alone —
+ * which is what the reference implementation does — leaves the first item
+ * permanently open and the other two permanently shut on a touch screen, so a
+ * phone reader simply never sees two thirds of it. Here a real `<button>`
+ * toggles: pointer users still get it on hover, touch and keyboard users get it
+ * on tap or Enter, and `aria-expanded` reports the state to a screen reader.
  */
 export default function Feature({
   id,
@@ -26,7 +33,7 @@ export default function Feature({
   label: string;
   title: string;
   text: string;
-  points: string[];
+  points: Point[];
   caption: string;
   panel: string;
   reverse?: boolean;
@@ -47,19 +54,10 @@ export default function Feature({
               {title}
             </h2>
             <p className="mt-6 max-w-[52ch] text-[16px] leading-relaxed font-light text-secondary">
-              {text}
+              {rich(text)}
             </p>
 
-            {/* The same point three ways is worse than once — these are the
-                takeaways, for a reader who is scanning rather than reading. */}
-            <ul className="mt-7 space-y-3">
-              {points.map((p) => (
-                <li key={p} className="flex gap-3.5 text-[15px] leading-relaxed text-primary">
-                  <span aria-hidden className="mt-[0.62em] h-px w-4 shrink-0 bg-primary/40" />
-                  <span className="max-w-[46ch]">{p}</span>
-                </li>
-              ))}
-            </ul>
+            <PointList points={points} />
           </Reveal>
 
           <Reveal delay={0.08} className="w-full lg:w-3/5">
@@ -93,5 +91,71 @@ export default function Feature({
         </div>
       </div>
     </section>
+  );
+}
+
+function PointList({ points }: { points: Point[] }) {
+  const [open, setOpen] = useState(0);
+
+  return (
+    <dl className="mt-9">
+      {points.map((p, i) => {
+        const isOpen = open === i;
+        return (
+          <div
+            key={p.title}
+            className="relative overflow-hidden border-t border-outline-variant last:border-b"
+            onMouseEnter={() => setOpen(i)}
+          >
+            {/* The rule fills as the item opens — the only motion in the block,
+                and it reads as progress rather than decoration. */}
+            <span
+              aria-hidden
+              className={cn(
+                'absolute top-0 left-0 h-[2px] bg-primary transition-all duration-500',
+                isOpen ? 'w-full' : 'w-0',
+              )}
+            />
+            <dt>
+              <button
+                type="button"
+                onClick={() => setOpen(isOpen ? -1 : i)}
+                onFocus={() => setOpen(i)}
+                aria-expanded={isOpen}
+                className="flex w-full items-baseline justify-between gap-4 rounded py-5 text-left"
+              >
+                <span
+                  className={cn(
+                    'text-[17px] leading-snug transition-colors',
+                    isOpen ? 'font-semibold text-primary' : 'font-medium text-secondary',
+                  )}
+                >
+                  {p.title}
+                </span>
+                <span
+                  aria-hidden
+                  className={cn(
+                    'mt-1 shrink-0 text-[14px] leading-none text-secondary transition-transform duration-300',
+                    isOpen && 'rotate-45',
+                  )}
+                >
+                  +
+                </span>
+              </button>
+            </dt>
+            <dd
+              className={cn(
+                'grid transition-[grid-template-rows] duration-300 ease-in-out',
+                isOpen ? 'grid-rows-[1fr] pb-5' : 'grid-rows-[0fr]',
+              )}
+            >
+              <p className="overflow-hidden pr-6 text-[15px] leading-relaxed font-light text-secondary">
+                {rich(p.body)}
+              </p>
+            </dd>
+          </div>
+        );
+      })}
+    </dl>
   );
 }

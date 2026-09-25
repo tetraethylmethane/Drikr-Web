@@ -24,14 +24,16 @@ export const LANGS: { code: Lang; label: string; full: string }[] = [
 ];
 
 type Step = { n: string; title: string; text: string };
+/** `body` may contain **bold** markers; see lib/rich.tsx. */
+type Point = { title: string; body: string };
 type Item = { name: string; text: string };
 
 export type Dict = {
   nav: { how: string; trust: string; watch: string; get: string; lang: string };
   hero: { headline: string; what: string; cta: string; alt: string };
   how: { label: string; title: string; steps: Step[] };
-  find: { label: string; title: string; text: string; points: string[]; caption: string; panel: string };
-  trust: { label: string; title: string; text: string; points: string[]; caption: string; panel: string };
+  find: { label: string; title: string; text: string; points: Point[]; caption: string; panel: string };
+  trust: { label: string; title: string; text: string; points: Point[]; caption: string; panel: string };
   watch: { label: string; title: string; items: Item[] };
   save: {
     label: string;
@@ -75,11 +77,20 @@ const en: Dict = {
   find: {
     label: 'Finding the problem',
     title: 'Which corner — not just whether',
-    text: 'You cannot put a sensor on every plant. The app fills in the ground between four of them, so treatment follows the patch instead of the whole field.',
+    text: 'You cannot put a sensor on every plant. The app fills in the ground between four of them, so treatment follows **the patch, not the whole field**.',
     points: [
-      'Four sensors, spread out — not clustered in one place.',
-      'The app scores every square of ground between them.',
-      'Only the bad squares get treated. Here, fourteen per cent.',
+      {
+        title: 'Put four sensors in the field',
+        body: 'Spread out, **not clustered**. Trouble arrives as a patch — a low corner that holds water, or the windward edge insects reach first.',
+      },
+      {
+        title: 'The app fills in the gaps',
+        body: 'It scores **every square** of ground between them, and stops at the field boundary rather than guessing past it.',
+      },
+      {
+        title: 'Only the bad squares get treated',
+        body: 'On this field that is **fourteen per cent**. The other eighty-six are left alone, and that is where the money is saved.',
+      },
     ],
     caption: 'Drag a sensor, or tab to one and use the arrow keys. Every square re-scores.',
     panel: 'field health map',
@@ -87,11 +98,20 @@ const en: Dict = {
   trust: {
     label: 'Why trust it',
     title: 'It says when it is not sure',
-    text: 'Two numbers, kept apart: how bad it looks, and how much evidence is behind it. A big number on thin evidence is held back — and shown to you as held back.',
+    text: 'Two numbers, kept apart: how bad it looks, and how much evidence is behind it. A big number on thin evidence is **held back** — and shown to you as held back.',
     points: [
-      'How bad it looks and how sure it is stay separate.',
-      'You decide how certain it has to be before it speaks.',
-      'Anything held back is shown to you as held back.',
+      {
+        title: 'Two numbers, never merged',
+        body: '**How bad** it looks and **how sure** it is stay apart. An old reading lowers the confidence without touching the score.',
+      },
+      {
+        title: 'You set the bar',
+        body: 'The setting lives in your profile. **Low**, and you hear everything including some false alarms. **High**, and you only hear what the sensors are sure of.',
+      },
+      {
+        title: 'Nothing is hidden, only held',
+        body: 'Anything held back is **shown to you as held back**, so a quiet app is never mistaken for a healthy field.',
+      },
     ],
     caption: 'Drag the threshold. The highest-scoring risk is the first to be dropped.',
     panel: 'alerts',
@@ -119,7 +139,7 @@ const en: Dict = {
     saved: 'Saved per year',
     subscription: 'Subscription',
     net: 'Left in your pocket',
-    note: 'Below about 1.7 acres the subscription costs more than it saves. We have not hidden that — drag the slider and watch it go negative.',
+    note: 'Below about **1.7 acres** the subscription costs more than it saves. We have not hidden that — drag the slider and watch it go negative.',
     rows: ['Spraying', 'Water', 'Labour', 'Other inputs'],
   },
   get: {
@@ -170,11 +190,20 @@ const hi: Dict = {
   find: {
     label: 'समस्या ढूँढना',
     title: 'कौन-सा कोना — सिर्फ़ यह नहीं कि कुछ ग़लत है',
-    text: 'हर पौधे पर सेंसर नहीं लग सकता। ऐप चार सेंसरों के बीच की ज़मीन का अंदाज़ा लगाता है, ताकि दवा पूरे खेत पर नहीं, सिर्फ़ ख़राब हिस्से पर जाए।',
+    text: 'हर पौधे पर सेंसर नहीं लग सकता। ऐप चार सेंसरों के बीच की ज़मीन का अंदाज़ा लगाता है, ताकि दवा **पूरे खेत पर नहीं, सिर्फ़ ख़राब हिस्से पर** जाए।',
     points: [
-      'चार सेंसर, फैलाकर — एक ही जगह नहीं।',
-      'ऐप उनके बीच के हर ख़ाने को गिनता है।',
-      'सिर्फ़ ख़राब ख़ानों पर दवा। यहाँ चौदह प्रतिशत।',
+      {
+        title: 'खेत में चार सेंसर लगाइए',
+        body: 'फैलाकर, **एक ही जगह नहीं**। परेशानी हमेशा एक हिस्से से शुरू होती है — नीचा कोना जहाँ पानी रुकता है, या वह किनारा जहाँ कीड़े पहले पहुँचते हैं।',
+      },
+      {
+        title: 'ऐप बीच की ज़मीन का हिसाब लगाता है',
+        body: 'उनके बीच के **हर ख़ाने** को गिनता है, और खेत की सीमा पर रुक जाता है — उससे आगे अंदाज़ा नहीं लगाता।',
+      },
+      {
+        title: 'दवा सिर्फ़ ख़राब ख़ानों पर',
+        body: 'इस खेत में यह **चौदह प्रतिशत** है। बाक़ी छियासी को छोड़ दिया जाता है, और बचत यहीं से आती है।',
+      },
     ],
     caption: 'सेंसर को खींचें, या टैब करके तीर बटन दबाएँ। हर ख़ाना फिर से गिना जाता है।',
     panel: 'खेत का नक्शा',
@@ -182,11 +211,20 @@ const hi: Dict = {
   trust: {
     label: 'भरोसा क्यों',
     title: 'जब यक़ीन न हो, यह बता देता है',
-    text: 'दो अलग बातें: समस्या कितनी बड़ी दिखती है, और उसके पीछे कितना सबूत है। कम सबूत वाली बड़ी चेतावनी रोक ली जाती है — और आपको दिखाया जाता है कि रोकी गई।',
+    text: 'दो अलग बातें: समस्या कितनी बड़ी दिखती है, और उसके पीछे कितना सबूत है। कम सबूत वाली बड़ी चेतावनी **रोक ली जाती है** — और आपको दिखाया जाता है कि रोकी गई।',
     points: [
-      'कितनी बड़ी समस्या और कितना पक्का — अलग-अलग।',
-      'कितना पक्का होना चाहिए, यह आप तय करते हैं।',
-      'जो चेतावनी रोकी गई, वह भी आपको दिखती है।',
+      {
+        title: 'दो नंबर, कभी एक नहीं',
+        body: '**कितनी बड़ी** समस्या दिखती है और **कितना पक्का** है — दोनों अलग रहते हैं। पुरानी रीडिंग भरोसा घटाती है, पर नंबर नहीं बदलती।',
+      },
+      {
+        title: 'सीमा आप तय करते हैं',
+        body: 'यह सेटिंग आपकी प्रोफ़ाइल में है। **कम** रखिए तो सब कुछ पता चलेगा, कुछ ग़लत चेतावनियाँ भी। **ज़्यादा** रखिए तो सिर्फ़ वही, जिसका सेंसरों को पक्का यक़ीन है।',
+      },
+      {
+        title: 'कुछ छिपता नहीं, सिर्फ़ रुकता है',
+        body: 'जो चेतावनी रोकी गई, वह **रोकी गई के तौर पर आपको दिखाई जाती है** — ताकि चुप ऐप को कभी स्वस्थ खेत न समझा जाए।',
+      },
     ],
     caption: 'सीमा को खींचें। सबसे बड़ा दिखने वाला ख़तरा सबसे पहले हटता है।',
     panel: 'चेतावनी',
@@ -214,7 +252,7 @@ const hi: Dict = {
     saved: 'साल भर की बचत',
     subscription: 'सदस्यता',
     net: 'आपकी जेब में बचा',
-    note: 'क़रीब १.७ एकड़ से कम पर सदस्यता बचत से ज़्यादा पड़ती है। हमने इसे छिपाया नहीं — स्लाइडर खींचकर देखिए।',
+    note: 'क़रीब **१.७ एकड़** से कम पर सदस्यता बचत से ज़्यादा पड़ती है। हमने इसे छिपाया नहीं — स्लाइडर खींचकर देखिए।',
     rows: ['छिड़काव', 'पानी', 'मज़दूरी', 'अन्य लागत'],
   },
   get: {
@@ -265,11 +303,20 @@ const ta: Dict = {
   find: {
     label: 'பிரச்சினையைக் கண்டறிதல்',
     title: 'எந்த மூலை — ஏதோ தவறு என்பது மட்டுமல்ல',
-    text: 'ஒவ்வொரு செடியிலும் சென்சார் வைக்க முடியாது. நான்கு சென்சார்களுக்கு இடையிலான நிலத்தை செயலி கணக்கிடுகிறது, அதனால் மருந்து முழு வயலுக்கும் அல்ல, பாதித்த பகுதிக்கு மட்டும் செல்கிறது.',
+    text: 'ஒவ்வொரு செடியிலும் சென்சார் வைக்க முடியாது. நான்கு சென்சார்களுக்கு இடையிலான நிலத்தை செயலி கணக்கிடுகிறது, அதனால் மருந்து **முழு வயலுக்கும் அல்ல, பாதித்த பகுதிக்கு மட்டும்** செல்கிறது.',
     points: [
-      'நான்கு சென்சார்கள், பரவலாக — ஒரே இடத்தில் அல்ல.',
-      'அவற்றுக்கு இடையிலான ஒவ்வொரு கட்டத்தையும் செயலி கணக்கிடும்.',
-      'பாதித்த கட்டங்களுக்கு மட்டும் மருந்து. இங்கே பதினான்கு சதவீதம்.',
+      {
+        title: 'வயலில் நான்கு சென்சார்களை வையுங்கள்',
+        body: 'பரவலாக, **ஒரே இடத்தில் அல்ல**. பிரச்சினை எப்போதும் ஒரு பகுதியில் தொடங்கும் — நீர் தேங்கும் தாழ்வான மூலை, அல்லது பூச்சிகள் முதலில் வரும் ஓரம்.',
+      },
+      {
+        title: 'இடைப்பட்ட நிலத்தை செயலி கணக்கிடும்',
+        body: 'அவற்றுக்கு இடையிலான **ஒவ்வொரு கட்டத்தையும்** கணக்கிட்டு, வயல் எல்லையில் நிறுத்திக்கொள்ளும் — அதற்கு அப்பால் ஊகிக்காது.',
+      },
+      {
+        title: 'பாதித்த கட்டங்களுக்கு மட்டும் மருந்து',
+        body: 'இந்த வயலில் அது **பதினான்கு சதவீதம்**. மீதி எண்பத்தாறு அப்படியே விடப்படும், சேமிப்பு அங்கிருந்துதான் வருகிறது.',
+      },
     ],
     caption: 'சென்சாரை இழுக்கவும், அல்லது டேப் செய்து அம்புக்குறிகளைப் பயன்படுத்தவும். ஒவ்வொரு கட்டமும் மீண்டும் கணக்கிடப்படும்.',
     panel: 'வயல் வரைபடம்',
@@ -277,11 +324,20 @@ const ta: Dict = {
   trust: {
     label: 'ஏன் நம்பலாம்',
     title: 'உறுதி இல்லாதபோது அதைச் சொல்கிறது',
-    text: 'இரண்டு தனித் தனி விஷயங்கள்: பிரச்சினை எவ்வளவு பெரிதாகத் தெரிகிறது, அதற்குப் பின்னால் எவ்வளவு ஆதாரம் இருக்கிறது. ஆதாரம் குறைவான பெரிய எச்சரிக்கை தடுத்து வைக்கப்படும் — தடுக்கப்பட்டது என்பதும் உங்களுக்குக் காட்டப்படும்.',
+    text: 'இரண்டு தனித் தனி விஷயங்கள்: பிரச்சினை எவ்வளவு பெரிதாகத் தெரிகிறது, அதற்குப் பின்னால் எவ்வளவு ஆதாரம் இருக்கிறது. ஆதாரம் குறைவான பெரிய எச்சரிக்கை **தடுத்து வைக்கப்படும்** — தடுக்கப்பட்டது என்பதும் உங்களுக்குக் காட்டப்படும்.',
     points: [
-      'எவ்வளவு பெரிது, எவ்வளவு உறுதி — தனித் தனியாக.',
-      'எவ்வளவு உறுதி வேண்டும் என்பதை நீங்கள் முடிவு செய்கிறீர்கள்.',
-      'தடுக்கப்பட்ட எச்சரிக்கையும் உங்களுக்குக் காட்டப்படும்.',
+      {
+        title: 'இரண்டு எண்கள், ஒருபோதும் கலப்பதில்லை',
+        body: '**எவ்வளவு பெரிது** என்பதும் **எவ்வளவு உறுதி** என்பதும் தனித் தனியே இருக்கும். பழைய அளவு நம்பகத்தை மட்டும் குறைக்கும், மதிப்பெண்ணைத் தொடாது.',
+      },
+      {
+        title: 'வரம்பை நீங்கள் முடிவு செய்கிறீர்கள்',
+        body: 'இந்த அமைப்பு உங்கள் சுயவிவரத்தில் இருக்கிறது. **குறைவாக** வைத்தால் தவறான எச்சரிக்கைகள் உட்பட எல்லாம் தெரியும். **அதிகமாக** வைத்தால் சென்சார்கள் உறுதியாகச் சொல்வது மட்டும்.',
+      },
+      {
+        title: 'எதுவும் மறைக்கப்படாது, தடுக்கப்படும் மட்டுமே',
+        body: 'தடுக்கப்பட்ட எச்சரிக்கை **தடுக்கப்பட்டது என்றே உங்களுக்குக் காட்டப்படும்** — அமைதியான செயலி ஆரோக்கியமான வயல் என்று தவறாகப் புரிந்துகொள்ளப்படக் கூடாது.',
+      },
     ],
     caption: 'வரம்பை இழுக்கவும். அதிக மதிப்பெண் பெற்ற அபாயமே முதலில் நீக்கப்படும்.',
     panel: 'எச்சரிக்கை',
@@ -309,7 +365,7 @@ const ta: Dict = {
     saved: 'ஆண்டுக்கு சேமிப்பு',
     subscription: 'சந்தா',
     net: 'உங்கள் கையில் மிச்சம்',
-    note: 'சுமார் ௧.௭ ஏக்கருக்குக் கீழ் சந்தாவின் விலை சேமிப்பை விட அதிகம். அதை நாங்கள் மறைக்கவில்லை — ஸ்லைடரை இழுத்துப் பாருங்கள்.',
+    note: 'சுமார் **௧.௭ ஏக்கர்** அளவுக்குக் கீழ் சந்தாவின் விலை சேமிப்பை விட அதிகம். அதை நாங்கள் மறைக்கவில்லை — ஸ்லைடரை இழுத்துப் பாருங்கள்.',
     rows: ['தெளிப்பு', 'தண்ணீர்', 'கூலி', 'பிற செலவுகள்'],
   },
   get: {

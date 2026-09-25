@@ -5,6 +5,7 @@ import Reveal from '@/components/ui/Reveal';
 import { COST_MODEL, COST_ROWS } from '@/lib/site';
 import { useT } from '@/lib/i18n';
 import { inr } from '@/lib/utils';
+import { rich } from '@/lib/rich';
 
 /**
  * The cost comparison, trimmed to the one thing worth showing: four rows of
@@ -34,7 +35,7 @@ export default function Savings() {
             {t.save.title}
           </h2>
           <p className="mt-5 max-w-[52ch] text-[16px] leading-relaxed font-light text-secondary">
-            {t.save.text}
+            {rich(t.save.text)}
           </p>
         </Reveal>
 
@@ -124,7 +125,7 @@ export default function Savings() {
             </dl>
 
             <p className="mt-7 border-l border-primary pl-5 text-[15px] leading-relaxed font-light text-secondary">
-              {t.save.note}
+              {rich(t.save.note)}
             </p>
           </Reveal>
         </div>
