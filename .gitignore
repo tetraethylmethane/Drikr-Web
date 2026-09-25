@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+.vercel
+*.log
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+
+# The APK (~98 MB) is kept OUT of git on purpose — it would sit in history
+# permanently, close to GitHub's 100 MB hard limit, and every clone would pull it.
+#
+# This does NOT break the download button: .vercelignore exists and takes
+# precedence for `vercel` CLI deploys, and it deliberately does not list the APK,
+# so the file still reaches the deployment from the local working tree.
+#
+# The one case that breaks is deploying through Vercel's GitHub integration — the
+# APK is not in the repo, so /drikr.apk would 404. If you switch to that, upload
+# the binary as a GitHub Release asset and point APK.url in lib/site.ts at it.
+public/*.apk

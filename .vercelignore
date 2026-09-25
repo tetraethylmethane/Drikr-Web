@@ -1,0 +1,7 @@
+# Explicit, so Vercel never falls back to .gitignore when deciding what to upload.
+# public/drikr.apk must reach the deployment: it is what the download button serves.
+node_modules
+.next
+.git
+*.log
+*.tsbuildinfo
