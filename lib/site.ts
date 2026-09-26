@@ -25,11 +25,19 @@ export const APK: {
   minAndroid: string;
   builtAt: string | null;
 } = {
-  // Self-hosted rather than pointed at Expo's artifact URL: an EAS link expires (this
-  // build's on 2 October 2026), and a download button that quietly starts 404ing is
-  // exactly what this project refuses to ship. A GitHub Release is better still — see
-  // README — but that needs `gh auth login` first.
-  url: '/drikr.apk',
+  // Served from Vercel Blob, not from public/ and not from an EAS artifact URL.
+  //
+  // Three constraints picked this. The APK is 102 MB, past Vercel's 100 MB limit
+  // for a deployed file, so it cannot ride along with the site any more. An EAS
+  // artifact link expires after two weeks, and a download button that quietly
+  // starts 404ing is the exact failure this project refuses to ship. A GitHub
+  // Release would work but its URL names the repository, and this site
+  // deliberately does not disclose where the source lives.
+  //
+  // Blob is the one option with none of those problems: same Vercel account, no
+  // size limit, no expiry, nothing about the repo in the URL. Re-upload with
+  //   vercel blob put <apk> --pathname drikr.apk --access public --allow-overwrite --multipart
+  url: 'https://xbogiiv12itasct0.public.blob.vercel-storage.com/drikr.apk',
   version: '1.0.0',
   sizeMb: 102,
   minAndroid: '7.0 (API 24)',

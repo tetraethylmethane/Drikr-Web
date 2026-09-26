@@ -1,7 +1,11 @@
 # Explicit, so Vercel never falls back to .gitignore when deciding what to upload.
-# public/drikr.apk must reach the deployment: it is what the download button serves.
+#
+# The APK is excluded deliberately: at 102 MB it exceeds Vercel's per-file limit
+# and fails the whole deploy. It is served from Vercel Blob instead — see the
+# comment on APK.url in lib/site.ts.
 node_modules
 .next
 .git
 *.log
 *.tsbuildinfo
+public/*.apk
