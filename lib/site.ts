@@ -38,7 +38,7 @@ export const APK: {
   // size limit, no expiry, nothing about the repo in the URL. Re-upload with
   //   vercel blob put <apk> --pathname drikr.apk --access public --allow-overwrite --multipart
   url: 'https://xbogiiv12itasct0.public.blob.vercel-storage.com/drikr.apk',
-  version: '1.2.1',
+  version: '1.2.2',
   sizeMb: 108,
   minAndroid: '7.0 (API 24)',
   builtAt: '1 October 2026',
