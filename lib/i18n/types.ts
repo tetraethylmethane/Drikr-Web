@@ -1,7 +1,7 @@
 /**
- * Site copy in English, Hindi and Tamil.
+ * Site copy in 13 Indian languages.
  *
- * The app ships all three at full parity, so a site that only speaks English
+ * The app ships all 13 at full parity, so a site that only speaks English
  * would be claiming less than the product delivers. Terminology is taken from
  * the app's own locale files rather than re-invented — खेत / வயல் for field,
  * फ़सल / பயிர் for crop, सिंचाई / நீர்ப்பாசனம் for irrigation — so somebody
@@ -41,6 +41,6 @@ export type Dict = {
     rows: string[];
   };
   get: { label: string; title: string; text: string; cta: string; unavailable: string };
-  footer: { tagline: string; sources: string; built: string; rights: string };
+  footer: { tagline: string; sources: string; built: string; rights: string; privacy: string };
   demo: { drag: string; reset: string; threshold: string; low: string; high: string; sent: string; held: string; bad: string; sure: string };
 };

@@ -38,23 +38,10 @@ export const APK: {
   // size limit, no expiry, nothing about the repo in the URL. Re-upload with
   //   vercel blob put <apk> --pathname drikr.apk --access public --allow-overwrite --multipart
   url: 'https://xbogiiv12itasct0.public.blob.vercel-storage.com/drikr.apk',
-  version: '1.0.0',
-  sizeMb: 102,
+  version: '1.2.1',
+  sizeMb: 108,
   minAndroid: '7.0 (API 24)',
-  builtAt: '26 September 2026',
-};
-
-/**
- * The repository URL is deliberately absent.
- *
- * The site does not link to the source and does not name where it lives — this
- * is competition work, and a public page is the wrong place to hand over the
- * code. Do not reintroduce a `github` field here: if it exists, something will
- * eventually render it.
- */
-export const LINKS = {
-  problemStatement: '26180',
-  team: 'H043',
+  builtAt: '1 October 2026',
 };
 
 /* ------------------------------------------------------------------- content ---- */
@@ -169,25 +156,35 @@ export const CROPS = [
   { key: 'tomato', label: 'Tomato', aliases: ['tamatar', 'thakkali', 'takkali'] },
   { key: 'sugarcane', label: 'Sugarcane', aliases: ['ganna', 'ikshu', 'karumbu', 'cane'] },
   { key: 'groundnut', label: 'Groundnut', aliases: ['moongphali', 'peanut', 'verkadalai', 'singdana'] },
+  { key: 'soybean', label: 'Soybean', aliases: ['soya', 'soyabean'] },
+  { key: 'chickpea', label: 'Chickpea', aliases: ['chana', 'gram', 'harbhara', 'kadalai'] },
+  { key: 'tur', label: 'Tur / Arhar', aliases: ['arhar', 'toor', 'pigeon pea', 'thuvarai', 'kandi'] },
+  { key: 'moong', label: 'Moong', aliases: ['green gram', 'mung', 'pachai payaru', 'pesalu'] },
+  { key: 'mustard', label: 'Mustard', aliases: ['sarson', 'rai', 'rapeseed'] },
+  { key: 'onion', label: 'Onion', aliases: ['pyaz', 'kanda', 'vengayam', 'ulli'] },
+  { key: 'potato', label: 'Potato', aliases: ['aloo', 'batata', 'urulai'] },
+  { key: 'chilli', label: 'Chilli', aliases: ['mirchi', 'mirch', 'milagai', 'mirapa'] },
+  { key: 'banana', label: 'Banana', aliases: ['kela', 'vazhai', 'arati'] },
+  { key: 'bajra', label: 'Bajra', aliases: ['pearl millet', 'kambu', 'sajje'] },
+  { key: 'ragi', label: 'Ragi', aliases: ['finger millet', 'nachni', 'mandua', 'kezhvaragu'] },
 ] as const;
 
-/** Disease-window provenance, from src/config/agronomy.ts. 21 windows in total. */
-export const PROVENANCE = { tnau: 14, pau: 1, estimated: 6, total: 21 };
+/** Disease-window provenance, from src/config/agronomy.ts. 46 windows across 18 crops. */
+export const PROVENANCE = { tnau: 14, pau: 1, estimated: 31, total: 46 };
 
 export const DRONE_LINKS = [
   {
     aircraft: 'Dynalog DR-DG600C',
-    link: 'manual',
+    link: 'phone',
     status: 'working',
     plain:
-      'Works today. It is a 249-gram camera drone with locked-down software, so the app writes the waypoints out and the farmer types them into the maker’s own app.',
+      'Works today. The phone joins the drone’s WiFi and flies it itself: one tap takes off, photographs up to eight spots with the camera pointed down, and lands where it started.',
   },
   {
-    aircraft: 'turbodrone bridge',
-    link: 'lwPro',
+    aircraft: 'Any other drone',
+    link: 'manual',
     status: 'working',
-    plain:
-      'A laptop joined to the drone’s own WiFi speaks the protocol for us. Set one URL and the app can upload a route, start it and abort it.',
+    plain: 'The app writes the waypoints out and the farmer types them into the maker’s own app.',
   },
   {
     aircraft: 'ArduPilot / Pixhawk',
@@ -215,9 +212,9 @@ export const LIMITS = [
       'Point the camera at soil, or take a blurry shot, and the answer is "could not identify". That is a real answer. It will never guess "healthy" to fill the space.',
   },
   {
-    title: 'Six of 21 disease windows are still estimates',
+    title: '31 of 46 disease windows are still estimates',
     plain:
-      'Fourteen came from TNAU’s own published guidance and one from PAU. The remaining six are informed guesses, and the app labels them as guesses when it shows them to you.',
+      'Fourteen came from TNAU’s own published guidance and one from PAU. The rest, including every window for the eleven crops added in 1.2, are informed guesses, and the app labels them as guesses when it shows them to you.',
   },
   {
     title: 'A field with no sensors gets no score',
@@ -228,7 +225,7 @@ export const LIMITS = [
 
 export const STATS = [
   { value: '5', label: 'risk domains scored', sub: 'each carrying its own evidence' },
-  { value: '3', label: 'languages, full parity', sub: 'English, Hindi, Tamil — with speech' },
+  { value: '13', label: 'languages, full parity', sub: 'every major Indian language — with speech' },
   { value: '0', label: 'network calls to score a field', sub: 'the engine runs on your phone' },
-  { value: '14/21', label: 'disease windows sourced', sub: 'from TNAU published guidance' },
+  { value: '18', label: 'crops covered', sub: 'from paddy and wheat to ragi and banana' },
 ];

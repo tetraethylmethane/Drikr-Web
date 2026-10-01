@@ -29,7 +29,7 @@ const body = Karla({
 export const metadata: Metadata = {
   title: 'Drikr — knowing which corner of the field has the problem',
   description:
-    'Sensors in the soil, the reasoning on the farmer’s phone, and a drone that treats the affected patch instead of the whole field. Built for Smart India Hackathon 2026.',
+    'Sensors in the soil, the reasoning on the farmer’s phone, and a drone that treats the affected patch instead of the whole field. In 13 Indian languages.',
   icons: { icon: '/favicon.png' },
 };
 

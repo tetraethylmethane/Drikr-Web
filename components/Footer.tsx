@@ -2,7 +2,6 @@
 
 import { Mark } from '@/components/Logo';
 import LangSwitch from '@/components/LangSwitch';
-import { LINKS } from '@/lib/site';
 import { useT } from '@/lib/i18n';
 
 export default function Footer() {
@@ -33,9 +32,14 @@ export default function Footer() {
 
             <div className="flex flex-col gap-1.5 text-start text-[12px] text-secondary sm:text-end">
               <p>
-                {t.footer.built} · PS {LINKS.problemStatement} · {LINKS.team}
+                {t.footer.built}
               </p>
               <p className="max-w-[46ch]">{t.footer.rights}</p>
+              <p>
+                <a href="/privacy" className="underline underline-offset-2 hover:text-primary">
+                  {t.footer.privacy}
+                </a>
+              </p>
               <p>© {new Date().getFullYear()} Drikr Systems</p>
             </div>
           </div>

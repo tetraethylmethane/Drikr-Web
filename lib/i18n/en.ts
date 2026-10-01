@@ -97,8 +97,9 @@ const en: Dict = {
   footer: {
     tagline: 'Measure first, then act.',
     sources: 'Weather from Open-Meteo. Prices from data.gov.in. Disease guidance from TNAU and PAU.',
-    built: 'Built for Smart India Hackathon 2026',
+    built: 'Made in India, for Indian farmers',
     rights: 'Readings shown here are simulated, and the app says so too.',
+    privacy: 'Privacy and your data',
   },
   demo: {
     drag: 'Drag a station',
