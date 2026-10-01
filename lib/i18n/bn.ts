@@ -9,7 +9,9 @@ const bn: Dict = {
     "system": "ভিতরে",
     "proof": "প্রমাণ",
     "get": "অ্যাপ নিন",
-    "lang": "ভাষা"
+    "lang": "ভাষা",
+    "langTitle": "আপনার ভাষা বেছে নিন",
+    "langKeep": "চালিয়ে যান"
   },
   "hero": {
     "headline": "সমস্যাটা ঠিক কোথায়?",

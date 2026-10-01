@@ -9,7 +9,9 @@ const as: Dict = {
     "system": "ভিতৰত",
     "proof": "প্ৰমাণ",
     "get": "এপ লওক",
-    "lang": "ভাষা"
+    "lang": "ভাষা",
+    "langTitle": "আপোনাৰ ভাষা বাছক",
+    "langKeep": "চলাই যাওক"
   },
   "hero": {
     "headline": "সমস্যাটো ঠিক ক'ত?",

@@ -18,7 +18,18 @@ type Item = { name: string; text: string };
 type Figure = { value: string; label: string; sub: string };
 
 export type Dict = {
-  nav: { how: string; map: string; service: string; system: string; proof: string; get: string; lang: string };
+  nav: {
+    how: string;
+    map: string;
+    service: string;
+    system: string;
+    proof: string;
+    get: string;
+    lang: string;
+    /** The first-visit language prompt. */
+    langTitle: string;
+    langKeep: string;
+  };
   hero: { headline: string; what: string; cta: string; alt: string };
   problem: {
     label: string;

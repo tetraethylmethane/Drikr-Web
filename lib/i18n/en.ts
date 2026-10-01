@@ -8,7 +8,9 @@ const en: Dict = {
     "system": "Inside",
     "proof": "Proof",
     "get": "Get the app",
-    "lang": "Language"
+    "lang": "Language",
+    "langTitle": "Choose your language",
+    "langKeep": "Continue"
   },
   "hero": {
     "headline": "Where exactly is the problem?",

@@ -9,7 +9,9 @@ const pa: Dict = {
     "system": "ਅੰਦਰ ਕੀ ਹੈ",
     "proof": "ਸਬੂਤ",
     "get": "ਐਪ ਲਓ",
-    "lang": "ਭਾਸ਼ਾ"
+    "lang": "ਭਾਸ਼ਾ",
+    "langTitle": "ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ",
+    "langKeep": "ਜਾਰੀ ਰੱਖੋ"
   },
   "hero": {
     "headline": "ਸਮੱਸਿਆ ਠੀਕ ਕਿੱਥੇ ਹੈ?",

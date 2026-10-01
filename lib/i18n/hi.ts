@@ -8,7 +8,9 @@ const hi: Dict = {
     "system": "अंदर क्या है",
     "proof": "सबूत",
     "get": "ऐप लें",
-    "lang": "भाषा"
+    "lang": "भाषा",
+    "langTitle": "अपनी भाषा चुनें",
+    "langKeep": "जारी रखें"
   },
   "hero": {
     "headline": "समस्या ठीक कहाँ है?",

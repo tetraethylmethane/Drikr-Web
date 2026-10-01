@@ -9,7 +9,9 @@ const ur: Dict = {
     "system": "اندر کیا ہے",
     "proof": "ثبوت",
     "get": "ایپ لیں",
-    "lang": "زبان"
+    "lang": "زبان",
+    "langTitle": "اپنی زبان چنیں",
+    "langKeep": "جاری رکھیں"
   },
   "hero": {
     "headline": "مسئلہ ٹھیک کہاں ہے؟",

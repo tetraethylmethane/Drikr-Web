@@ -9,7 +9,9 @@ const mr: Dict = {
     "system": "आत काय आहे",
     "proof": "पुरावा",
     "get": "ॲप घ्या",
-    "lang": "भाषा"
+    "lang": "भाषा",
+    "langTitle": "तुमची भाषा निवडा",
+    "langKeep": "पुढे चला"
   },
   "hero": {
     "headline": "समस्या नेमकी कुठे आहे?",

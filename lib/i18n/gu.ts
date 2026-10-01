@@ -9,7 +9,9 @@ const gu: Dict = {
     "system": "અંદર શું છે",
     "proof": "પુરાવો",
     "get": "એપ લો",
-    "lang": "ભાષા"
+    "lang": "ભાષા",
+    "langTitle": "તમારી ભાષા પસંદ કરો",
+    "langKeep": "ચાલુ રાખો"
   },
   "hero": {
     "headline": "સમસ્યા બરાબર ક્યાં છે?",

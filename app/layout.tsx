@@ -4,6 +4,7 @@ import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import LangPrompt from '@/components/LangPrompt';
 import { LanguageProvider } from '@/lib/i18n';
 
 // DESIGN.md specifies Noto Serif + Manrope; Montserrat + Karla is the pairing
@@ -65,6 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <Footer />
           </SmoothScroll>
+          {/* First visit only: which language? */}
+          <LangPrompt />
         </LanguageProvider>
       </body>
     </html>
