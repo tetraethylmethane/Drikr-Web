@@ -23,7 +23,7 @@ const SECTIONS = [
   },
   {
     title: 'Who sees it',
-    body: 'Community posts show your name and district — never your number. In a drone booking your number goes only to the operator who accepts the job. Questions you ask Kisan Mitra may be sent to Google Gemini to get an answer. If you turn on SMS alerts, urgent alerts are sent by SMS from your phone to the numbers you chose, and to no one else.',
+    body: 'Community posts show your name and district — never your number. In a drone booking your number goes only to the operator who accepts the job. Questions you ask Kisan Mitra may be sent to Google Gemini to get an answer. If you tap Translate on a community post, its text is sent to Bhashini, the Government of India’s translation service, and nothing else about you is. If you turn on SMS alerts, urgent alerts are sent by SMS from your phone to the numbers you chose, and to no one else.',
   },
   {
     title: 'How long',

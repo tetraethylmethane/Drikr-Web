@@ -17,8 +17,10 @@ export default function Nav() {
 
   const items = [
     { href: '#how', label: t.nav.how },
-    { href: '#trust', label: t.nav.trust },
-    { href: '#watch', label: t.nav.watch },
+    { href: '#find', label: t.nav.map },
+    { href: '#service', label: t.nav.service },
+    { href: '#system', label: t.nav.system },
+    { href: '#proof', label: t.nav.proof },
   ];
 
   useEffect(() => {

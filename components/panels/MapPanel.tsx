@@ -1,19 +1,26 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { STATE_STYLE } from '@/components/ui/SectionHead';
 import { useT } from '@/lib/i18n';
 
 /**
  * The health map, playable, inside the reference's floating panel.
  *
  * The interpolation is the same inverse-distance weighting the app runs in
- * healthMap.ts — drag a station and every cell re-scores. Severity is carried
- * by tone alone, which the monochrome system requires and which happens to be
- * the more honest encoding anyway: a red cell asserts danger, a dark cell
- * asserts magnitude.
+ * healthMap.ts — drag a station and every cell re-scores. Each cell lands in
+ * one of the three states the app shows (healthy, at risk, problem), carried by
+ * tone and hatching rather than hue, which the monochrome system requires.
+ * The field is 5 acres, so the problem area reads out in acres - the sentence
+ * a farmer actually acts on.
  */
 
 const CELLS = 12;
+const ACRES = 5;
+const RISK = 35;
+const PROBLEM = 55;
+
+const stateOf = (v: number) => (v > PROBLEM ? 'problem' : v > RISK ? 'atRisk' : 'healthy');
 
 type Station = { id: string; x: number; y: number; stress: number };
 
@@ -43,13 +50,11 @@ export default function MapPanel() {
   const [dragging, setDragging] = useState<string | null>(null);
   const board = useRef<HTMLDivElement>(null);
 
-  const affected = (() => {
-    let bad = 0;
-    for (let i = 0; i < CELLS; i++)
-      for (let j = 0; j < CELLS; j++)
-        if (idw((i + 0.5) / CELLS, (j + 0.5) / CELLS, stations) > 55) bad++;
-    return Math.round((bad / (CELLS * CELLS)) * 100);
-  })();
+  const counts = { healthy: 0, atRisk: 0, problem: 0 };
+  for (let i = 0; i < CELLS; i++)
+    for (let j = 0; j < CELLS; j++) counts[stateOf(idw((i + 0.5) / CELLS, (j + 0.5) / CELLS, stations))]++;
+  const acresOf = (n: number) => (n / (CELLS * CELLS)) * ACRES;
+  const problemAcres = Math.round(acresOf(counts.problem) * 10) / 10;
 
   const move = useCallback(
     (cx: number, cy: number) => {
@@ -91,16 +96,14 @@ export default function MapPanel() {
   return (
     <div className="flex flex-col gap-8 p-8">
       <div className="grid grid-cols-3 gap-4">
-        {[
-          [t.save.label, `${affected}%`, affected],
-          ['S1 – S4', '4', 100],
-          [`${CELLS} × ${CELLS}`, String(CELLS * CELLS), 100],
-        ].map(([k, v, pct]) => (
-          <div key={k as string} className="space-y-1">
-            <div className="text-[10px] tracking-wider text-primary/50 uppercase">{k}</div>
-            <div className="text-xl font-semibold text-primary">{v}</div>
-            <div className="h-1 w-full overflow-hidden rounded-full bg-primary/5">
-              <div className="h-full bg-primary/40" style={{ width: `${pct}%` }} />
+        {(['healthy', 'atRisk', 'problem'] as const).map((k) => (
+          <div key={k} className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[10px] tracking-wider text-primary/60 uppercase">
+              <span className="h-2.5 w-2.5 rounded-[2px] border border-primary/20" style={STATE_STYLE[k]} />
+              {t.find[k]}
+            </div>
+            <div className="text-xl font-semibold text-primary">
+              {acresOf(counts[k]).toFixed(1)} <span className="text-[12px] font-normal text-secondary">ac</span>
             </div>
           </div>
         ))}
@@ -124,8 +127,8 @@ export default function MapPanel() {
             return (
               <div
                 key={k}
-                style={{ background: `rgba(0,0,0,${0.04 + (v / 100) * 0.72})` }}
-                className="border-[0.5px] border-surface-container-lowest/40 transition-colors duration-200"
+                style={STATE_STYLE[stateOf(v)]}
+                className="border-[0.5px] border-surface-container-lowest/60 transition-colors duration-200"
               />
             );
           })}
@@ -156,8 +159,18 @@ export default function MapPanel() {
         ))}
       </div>
 
+      {/* The one sentence the farmer acts on. */}
+      <div className="rounded-lg border border-primary/10 bg-surface-container-low px-4 py-3.5" aria-live="polite">
+        <p className="text-[15px] font-semibold text-primary">
+          {problemAcres > 0 ? t.find.rec.replace('{a}', problemAcres.toFixed(1)) : t.find.recNone}
+        </p>
+        {problemAcres > 0 ? <p className="mt-1 text-[13px] leading-relaxed text-secondary">{t.find.recAction}</p> : null}
+      </div>
+
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-primary/50">{t.demo.drag}</span>
+        <span className="text-[10px] text-primary/50">
+          {t.find.field} · {t.demo.drag}
+        </span>
         <button
           onClick={() => setStations(INITIAL)}
           className="rounded text-[10px] tracking-wider text-primary/60 uppercase hover:text-primary"

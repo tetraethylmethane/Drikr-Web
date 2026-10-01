@@ -141,6 +141,12 @@ export const COST_MODEL = {
   droneServicePerAcre: 500,
 };
 
+/**
+ * What one drone scan costs per acre through an FPO or operator: the middle of
+ * the ₹75-125 the feasibility estimate gives. Used by the treatment calculator.
+ */
+export const SCAN_PER_ACRE = 100;
+
 export const COST_ROWS = [
   { label: 'Spraying', key: 'spray', plain: 'Less chemical, because only the affected patches get sprayed.' },
   { label: 'Water', key: 'water', plain: 'Water goes where the soil is actually dry.' },

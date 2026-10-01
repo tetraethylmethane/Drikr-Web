@@ -1,19 +1,26 @@
 'use client';
 
 import Hero from '@/components/sections/Hero';
-import Steps from '@/components/sections/Steps';
+import Problem from '@/components/sections/Problem';
+import How from '@/components/sections/How';
 import Feature from '@/components/sections/Feature';
+import Treat from '@/components/sections/Treat';
+import Service from '@/components/sections/Service';
+import System from '@/components/sections/System';
 import Watches from '@/components/sections/Watches';
-import Savings from '@/components/sections/Savings';
+import Impact from '@/components/sections/Impact';
+import Proof from '@/components/sections/Proof';
+import Question from '@/components/sections/Question';
 import Get from '@/components/sections/Get';
 import MapPanel from '@/components/panels/MapPanel';
 import GatePanel from '@/components/panels/GatePanel';
 import { useT } from '@/lib/i18n';
 
 /**
- * Six sections. Read top to bottom they answer, in order: what is it, how does
- * it work, how does it find the problem, why should I believe it, what does it
- * watch, what does it save, how do I get it.
+ * Read top to bottom the page answers, in order: what goes wrong in a field,
+ * how Drikr is used, how it shows where the problem is, why to believe it,
+ * what targeting saves, who flies the drone, what it is built from, what it
+ * watches, why it matters, how it will be proved, and how to get it.
  */
 export default function Page() {
   const { t } = useT();
@@ -21,7 +28,8 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <Steps />
+      <Problem />
+      <How />
 
       <Feature
         id="find"
@@ -48,8 +56,13 @@ export default function Page() {
         <GatePanel />
       </Feature>
 
+      <Treat />
+      <Service />
+      <System />
       <Watches />
-      <Savings />
+      <Impact />
+      <Proof />
+      <Question />
       <Get />
     </>
   );
