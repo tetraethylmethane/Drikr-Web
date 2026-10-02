@@ -94,7 +94,19 @@ export type Dict = {
   impact: { label: string; title: string; benefits: Item[]; groupsTitle: string; groups: Item[] };
   proof: { label: string; title: string; text: string; metrics: Item[]; feasTitle: string; feas: Item[] };
   question: { before: string; q1: string; after: string; q2: string };
-  get: { label: string; title: string; text: string; cta: string; unavailable: string };
+  get: {
+    label: string;
+    title: string;
+    text: string;
+    cta: string;
+    unavailable: string;
+    /** Install help for a phone that has never side-loaded an app. */
+    installTitle: string;
+    steps: string[];
+    warn: string;
+    safe: string;
+    listen: string;
+  };
   footer: { tagline: string; sources: string; built: string; rights: string; privacy: string };
   demo: { drag: string; reset: string; threshold: string; low: string; high: string; sent: string; held: string; bad: string; sure: string };
 };

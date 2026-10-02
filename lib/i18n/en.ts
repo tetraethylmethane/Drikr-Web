@@ -416,7 +416,17 @@ const en: Dict = {
     "title": "Put it on your phone",
     "text": "Android, free, and it works offline once installed.",
     "cta": "Download for Android",
-    "unavailable": "The Android build has not been published here yet."
+    "unavailable": "The Android build has not been published here yet.",
+    "installTitle": "Installing takes one minute",
+    "steps": [
+      "Tap Download. Wait until it finishes.",
+      "Open the downloaded Drikr file.",
+      "If the phone asks, tap Settings, turn on \"Allow from this source\", and go back.",
+      "Tap Install, then Open."
+    ],
+    "warn": "If Google Play Protect shows a warning, tap \"More details\", then \"Install anyway\".",
+    "safe": "Drikr does not read your SMS, contacts or bank apps.",
+    "listen": "Listen"
   },
   "footer": {
     "tagline": "Measure first, then act.",
